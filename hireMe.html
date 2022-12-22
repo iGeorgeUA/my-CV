@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hire me</title>
+</head>
+<body>
+    <h1>Hire me</h1>
+
+    <h3>Contact information</h3>
+
+    <table border="1" cellspacing="0" celpadding="10px">
+        <tr>
+            <td><strong>Phone</strong></td>
+            <td>+380933099194</td>
+        </tr>
+
+        <tr>
+            <td><strong>Address</strong></td>
+            <td>Cherkasy, Ukraine</td>
+        </tr>
+    </table>
+
+    <form>
+        <fieldset>
+            <legend>Contact form</legend>
+
+            <table>
+                <tr>
+                    <td><label for="email">Email<span style="color:#FF0000">*</span>:</label></td>
+                    <td><input id="email" type="text" required name="email" placeholder="Enter email" size="49" /></td>
+                </tr>
+
+                <tr>
+                    <td valign="top"><label for="description">Description:</label></td>
+                    <td><textarea id="description" name="description" placeholder="Enter description" rows="5" cols="40"></textarea></td>
+                </tr>
+
+                <tr>
+                    <td><label for="work-type">Work type:</label></td>
+                    <td>
+                        <select id="work-type" name="selection">
+                            <option value="work-in-the-office">Work in the office</option>
+                            <option value="remote-work">Remote work</option>
+                            <option value="one-time-project">One-time project</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" value="Hire me" /></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</body>
