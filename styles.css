@@ -1,0 +1,32 @@
+.cWhole-page {
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cName {
+    font-style: italic;
+}
+
+.cPosition {
+    font-weight: bold;
+}
+
+.cList {
+    list-style-type: square;
+}
+
+.cLink {
+    color: #00f;
+}
+
+.cLink:hover {
+    text-decoration: none;
+}
+
+.cLink:visited {
+    color: #005;
+}
+
+.cTable-header {
+    text-transform: uppercase;
+}
