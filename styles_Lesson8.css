@@ -1,0 +1,54 @@
+body {
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cName {
+    font-style: italic;
+}
+
+.cPosition {
+    font-weight: bold;
+}
+
+.cList {
+    list-style-type: square;
+}
+
+.cLink {
+    color: #00f;
+}
+
+.cLink:hover {
+    text-decoration: none;
+}
+
+.cLink:visited {
+    color: #005;
+}
+
+.cTable-header {
+    text-transform: uppercase;
+}
+
+/*Lesson8*/
+table {
+    background-color: #b4b4ff;
+}
+
+th {
+    background-color: #fffeaa;
+}
+
+img {
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px;
+    border-color: #b4b4ff;
+}
+
+.border-line {
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: #b4b4ff;
+}
