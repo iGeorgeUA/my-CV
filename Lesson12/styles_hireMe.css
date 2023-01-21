@@ -1,0 +1,88 @@
+body {
+  text-align: center;
+  max-width: 1024px;
+}
+
+form {
+  display: inline-block;
+  text-align: left;
+}
+
+table, tr, td {
+  background-color: #F8FAFC;
+  margin-left: auto;
+  margin-right: auto;
+  width: 488px;
+  font-size: 16px;
+  border: 2px solid #333;
+  border-collapse: collapse;
+}
+
+input, select, textarea {
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+input[type="email"],
+select,
+textarea {
+  border: 2px solid #333;
+  font-size: 16px;
+  display: block;
+  padding: 12px;
+  gap: 10px;
+  background: #F8FAFC;
+  border-radius: 10px;
+}
+
+textarea {
+  width: 488px;
+  height: 230px;
+}
+
+select {
+  min-width: 165px;
+  background: url(./arrow.jpg) no-repeat center right 12px;
+}
+
+label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+input[type="email"] {
+  width: 488px;
+  height: 48px;
+}
+
+input[type="submit"] {
+  
+  width: 92px;
+  height: 32px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 16px;
+  color: #0048D9;
+  border: 1px solid #0048D9;
+  border-radius: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #E7F2FD;
+}
+
+input:invalid {
+  border: 1px solid red;
+}
+
+.error {
+  display: none;
+  color: red;
+}
+
+input:invalid + .error {
+  display: block;
+}
