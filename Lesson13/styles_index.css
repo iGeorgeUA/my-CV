@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cLeft {
+    background: #86A3B4;
+    width: 28%;
+    padding: 0% 1% 0% 1%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.cLarge {
+    grid-area: content;
+    border-style: solid;
+    border-width: 0px 0px 0px 2px;
+    border-color: #1E1E1E;
+    width: 68%;
+    padding: 0% 1% 0% 1%;
+    position: absolute;
+    top: 0;
+    left: 30%;
+}
+
+.cName1 {
+    color: #FFFFFF;
+}
+
+.cName2 {
+    color: #1C2E8C;
+}
+
+img {
+    width: 100%;
+    
+}
+
+.cText {
+    color: #263036;
+}
+
+p {
+    color: #263036;
+}
+
+hr {
+    width: 75%;
+    color: #1E1E1E;
+    background-color: #1E1E1E;
+    margin-left: 0;
+    height: 6px;
+}
+
+ul {
+    color: #263036;
+}
+
+.cLink {
+    color: #1C2E8C;
+    text-decoration: none;
+}
+
+.divFlex {
+    display: flex;
+    justify-content: space-between;
+}
