@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cLeft {
+    background: var(--main-bg-color-left);
+    width: 28%;
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.cRight {
+    background: var(--main-bg-color-right);
+    border-style: solid;
+    border-width: 0px 0px 0px 2px;
+    border-color: var(--main-border-color);
+    width: 68%;
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+    position: absolute;
+    top: 0;
+    left: 30%;
+}
+
+.cName1 {
+    color: var(--name1-color);
+}
+
+.cName2 {
+    color: var(--name2-color);
+}
+
+img {
+    width: 100%;
+}
+
+.cText {
+    color: var(--text-color);
+}
+
+p {
+    color: var(--text-color);
+}
+
+hr {
+    width: 75%;
+    color: var(--main-border-color);
+    background-color: var(--main-border-color);
+    margin-left: 0;
+    height: 6px;
+}
+
+ul {
+    color: var(--text-color);
+}
+
+.cLink {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.divFlex {
+    display: flex;
+    justify-content: space-between;
+}
