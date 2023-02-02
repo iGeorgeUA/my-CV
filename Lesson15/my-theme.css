@@ -1,0 +1,14 @@
+.my-theme {
+    /* colors */
+    --main-bg-color-left: #212121;
+    --main-bg-color-right: #353535;
+    --main-border-color: #FFFFFF;
+    --name1-color: #B4C8FF;
+    --name2-color: #FFFFB4;
+    --text-color: #EBEBEB;
+    --link-color: #B4C8FF;
+
+    /* padding */
+
+    --main-padding: 1%;
+}
