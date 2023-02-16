@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hire me</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.4/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="w-screen h-screen bg-gray-200 flex justify-center items-center">
+    <form class="p-10 bg-white rounded-lg drop-shadow-lg space-y-4">
+
+        <h1 class="text-xl text-center text-gray-700 font-bold mb-2">Hire me</h1>
+
+        <h3 class="text-base text-center text-gray-700 font-bold mb-2">Contact information</h3>
+      
+        <div class="flex flex-col">
+            <table class="table-auto text-base text-gray-700 font-bold mb-2">
+                <tr>
+                    <td class="border px-4 py-2"><strong>Phone</strong></td>
+                    <td class="border px-4 py-2">+380933099194</td>
+                </tr>
+
+                <tr>
+                    <td class="border px-4 py-2"><strong>Address</strong></td>
+                    <td class="border px-4 py-2">Cherkasy, Ukraine</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="email" class="text-base text-gray-700 font-bold mb-2">E-mail<span style="color:#FF0000">*</span>:</label>
+            <input type="email" name="email" id="email" placeholder="Enter e-mail" required class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+            <p class="text-red-500 text-xs italic">Please enter e-mail</p>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="description" class="text-base text-gray-700 font-bold mb-2">Description:</label>
+            <textarea name="description" id="description" cols="50" rows="5" placeholder="Enter description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        </div>
+
+        <div class="flex flex-col">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="work-type">Work type:</label>
+            <div class="inline-block relative w-64">
+                <select class="text-base text-gray-700 font-bold mb-2 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" id="work-type" name="selection">
+                    <option>Work in the office</option>
+                    <option>Remote work</option>
+                    <option>One-time project</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <img src="arrow.jpg">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Hire me</button>
+  
+    </form>
+</body>
