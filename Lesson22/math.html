@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math</title>
+</head>
+<body>
+    <script>
+        let firstNumber;
+        let secondNumber;
+        firstNumber = prompt("Enter first number: ");
+        secondNumber = prompt("Enter second number: ");
+        if (firstNumber === "" || secondNumber === "") {
+            alert("Error");
+        } else {
+            
+            alert("Sum: " + (Number(firstNumber) + Number(secondNumber)));   
+
+            if (Number(firstNumber) < Number(secondNumber)) {
+                if (confirm("Are you sure you want to continue the operation?") === true) {
+                    alert("Difference: " + (Number(firstNumber) - Number(secondNumber)));
+                }
+            } else {
+                alert("Difference: " + (Number(firstNumber) - Number(secondNumber)));
+            }
+            
+            alert("Product: " + (Number(firstNumber) * Number(secondNumber)));
+
+            if (Number(secondNumber) === 0) alert("Numbers can't be divided by 0");
+            else alert("Quotient: " + (Number(firstNumber) / Number(secondNumber)));
+
+        } 
+    </script>
+</body>
+</html>
