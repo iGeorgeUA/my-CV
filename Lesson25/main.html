@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function checkEmpty(object) {
+
+            if (Object.keys(object).length === 0) {
+                console.log("Object is empty");
+            } else {
+                console.log("Object isn't empty");
+            }
+
+        }
+
+        const empty = {
+
+        };
+
+        const user = {
+
+            name: "Nate",
+
+            age: 24,
+
+            sayHello: function greet() {
+                console.log("Hi, my name is " + this.name + " I'm " + this.age + " years old");   
+            }
+
+        };
+
+        const calc = {
+
+            ask: function inputNumbers() {
+                firstNumber = prompt("Enter first number: ");
+                secondNumber = prompt("Enter second number: ");
+            },
+
+            sum: function add() {
+                console.log("Sum: " + (Number(firstNumber) + Number(secondNumber)));
+            },
+
+            mul: function multiply() {
+                console.log("Product: " + (Number(firstNumber) * Number(secondNumber)));
+            }
+            
+        };
+
+        checkEmpty(empty);
+        checkEmpty(user);
+        checkEmpty(calc);
+
+        user.sayHello();
+        calc.ask();
+        calc.sum();
+        calc.mul();
+
+    </script>
+</body>
+</html>
