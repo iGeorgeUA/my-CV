@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accumulator</title>
+</head>
+<body>
+    <script>
+
+        function Accumulator(initialValue) {
+            this.initialValue = initialValue;
+        }
+
+        Accumulator.prototype.increment = function() {
+            console.log('Increment: ' + (this.initialValue + 1));
+        };
+
+        Accumulator.prototype.decrement = function() {
+            console.log('Decrement: ' + (this.initialValue - 1));
+        };
+
+
+        function CancelableAccumulator(initialValue) {
+            this.initialValue = initialValue;
+            Accumulator.call(this.increment, this.decrement);
+        }
+
+        CancelableAccumulator.prototype = Object.create(Accumulator.prototype);
+
+        CancelableAccumulator.prototype.clear = function() {
+            console.log('Initial value: ' + this.initialValue);
+        };
+
+
+        let accumulator = new Accumulator(5);
+        let cancelableAccumulator = new CancelableAccumulator(15);
+
+        accumulator.increment();
+        accumulator.decrement();
+
+        cancelableAccumulator.increment();
+        cancelableAccumulator.decrement();
+        cancelableAccumulator.clear();
+        
+    </script>
+</body>
+</html>
