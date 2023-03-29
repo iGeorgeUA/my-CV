@@ -9,28 +9,31 @@
 <body>
     <script>
 
-        function Accumulator(initialValue) {
-            this.initialValue = initialValue;
+        function Accumulator(value) {
+            this.value = value;
         }
 
         Accumulator.prototype.increment = function() {
-            console.log('Increment: ' + (this.initialValue + 1));
+            this.value += 1;
+            console.log(this.value);
         };
 
         Accumulator.prototype.decrement = function() {
-            console.log('Decrement: ' + (this.initialValue - 1));
+            this.value -= 1;
+            console.log(this.value);
         };
 
 
-        function CancelableAccumulator(initialValue) {
-            this.initialValue = initialValue;
+        function CancelableAccumulator(value) {
+            this.value = value;
+            this.initialValue = value;
             Accumulator.call(this.increment, this.decrement);
         }
 
         CancelableAccumulator.prototype = Object.create(Accumulator.prototype);
 
         CancelableAccumulator.prototype.clear = function() {
-            console.log('Initial value: ' + this.initialValue);
+            console.log(this.initialValue);
         };
 
 
@@ -38,10 +41,19 @@
         let cancelableAccumulator = new CancelableAccumulator(15);
 
         accumulator.increment();
+        accumulator.increment();
+        accumulator.increment();
+
+        accumulator.decrement();
         accumulator.decrement();
 
         cancelableAccumulator.increment();
+        cancelableAccumulator.increment();
+        cancelableAccumulator.increment();
+
         cancelableAccumulator.decrement();
+        cancelableAccumulator.decrement();
+
         cancelableAccumulator.clear();
         
     </script>
