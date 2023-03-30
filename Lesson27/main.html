@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+</head>
+<body>
+
+    <p id = "pResult"></p>
+    <p id = "pSum"></p>
+    <p id = "pDif"></p>
+    <p id = "pProd"></p>
+    <p id = "pQuot"></p>
+    <p id = "pMax"></p>
+    <P id = "pMin"></P>
+
+    <script>
+
+        let num1;
+        let num2;
+
+        num1 = prompt("Enter first number: ");
+        num2 = prompt("Enter second number: ");
+
+        const resultElement = document.getElementById("pResult");
+
+        if (isNaN(num1) || isNaN(num2)) {
+
+            resultElement.innerHTML = 'Error: One of the inputs is not a nomber!';
+            resultElement.style.color = 'red';
+
+        } else {
+
+            resultElement.innerHTML = 'Results:';
+            resultElement.style.color = 'blue';
+
+            function add(firstNumber, secondNumber) {
+                const result = Number(firstNumber) + Number(secondNumber);
+                const sumElement = document.getElementById("pSum");
+                sumElement.innerHTML = 'Sum: ' + result;
+                if (result < -1000) {
+                    sumElement.style.color = '#190000';
+                } else if (result >= -1000 && result < -100) {
+                    sumElement.style.color = '#660000';
+                } else if (result >= -100 && result < -10) {
+                    sumElement.style.color = '#b20000';
+                } else if (result >= -10 && result < 0) {
+                    sumElement.style.color = '#ff0000';
+                } else if (result >= 0 && result <= 10) {
+                    sumElement.style.color = '#00ff00';
+                } else if (result > 10 && result <= 100) {
+                    sumElement.style.color = '#00c400';
+                } else if (result > 100 && result <= 1000) {
+                    sumElement.style.color = '#008900';
+                } else if (result > 1000) {
+                    sumElement.style.color = '#004e00';
+                }
+            }
+
+            function subtract(firstNumber, secondNumber) {
+                const result = Number(firstNumber) - Number(secondNumber);
+                const difElement = document.getElementById("pDif");
+                difElement.innerHTML = 'Difference: ' + result;
+                if (result < -1000) {
+                    difElement.style.color = '#190000';
+                } else if (result >= -1000 && result < -100) {
+                    difElement.style.color = '#660000';
+                } else if (result >= -100 && result < -10) {
+                    difElement.style.color = '#b20000';
+                } else if (result >= -10 && result < 0) {
+                    difElement.style.color = '#ff0000';
+                } else if (result >= 0 && result <= 10) {
+                    difElement.style.color = '#00ff00';
+                } else if (result > 10 && result <= 100) {
+                    difElement.style.color = '#00c400';
+                } else if (result > 100 && result <= 1000) {
+                    difElement.style.color = '#008900';
+                } else if (result > 1000) {
+                    difElement.style.color = '#004e00';
+                }
+            }
+
+            function multiply(firstNumber, secondNumber) {
+                const result = Number(firstNumber) * Number(secondNumber);
+                const prodElement = document.getElementById("pProd");
+                prodElement.innerHTML = 'Product: ' + result;
+                if (result < -1000) {
+                    prodElement.style.color = '#190000';
+                } else if (result >= -1000 && result < -100) {
+                    prodElement.style.color = '#660000';
+                } else if (result >= -100 && result < -10) {
+                    prodElement.style.color = '#b20000';
+                } else if (result >= -10 && result < 0) {
+                    prodElement.style.color = '#ff0000';
+                } else if (result >= 0 && result <= 10) {
+                    prodElement.style.color = '#00ff00';
+                } else if (result > 10 && result <= 100) {
+                    prodElement.style.color = '#00c400';
+                } else if (result > 100 && result <= 1000) {
+                    prodElement.style.color = '#008900';
+                } else if (result > 1000) {
+                    prodElement.style.color = '#004e00';
+                }
+            }
+
+            function divide(firstNumber, secondNumber) {
+                const result = Number(firstNumber) / Number(secondNumber);
+                const quotElement = document.getElementById("pQuot");
+                quotElement.innerHTML = 'Quotient: ' + result;
+                if (result < -1000) {
+                    quotElement.style.color = '#190000';
+                } else if (result >= -1000 && result < -100) {
+                    quotElement.style.color = '#660000';
+                } else if (result >= -100 && result < -10) {
+                    quotElement.style.color = '#b20000';
+                } else if (result >= -10 && result < 0) {
+                    quotElement.style.color = '#ff0000';
+                } else if (result >= 0 && result <= 10) {
+                    quotElement.style.color = '#00ff00';
+                } else if (result > 10 && result <= 100) {
+                    quotElement.style.color = '#00c400';
+                } else if (result > 100 && result <= 1000) {
+                    quotElement.style.color = '#008900';
+                } else if (result > 1000) {
+                    quotElement.style.color = '#004e00';
+                }
+            }
+        }
+
+        add(num1, num2);
+        subtract(num1, num2);
+        multiply(num1, num2);
+        divide(num1, num2);
+
+        let numbers = [4, 10, 9, 6, 2, 9, 8, 7, 1, 9];
+
+        function max(arrNumbers) {
+            let max = -Infinity;
+            for (let i = 0; i < arrNumbers.length; i++) {
+                if (isNaN(arrNumbers[i])) {
+                    continue;
+                }
+                if (max < arrNumbers[i] && max != arrNumbers[i]) {
+                    max = arrNumbers[i];
+                }
+            }
+            const maxElement = document.getElementById("pMax");
+            maxElement.innerHTML = 'Max: ' + max;
+        }
+
+        function min(arrNumbers) {
+            let min = Infinity;
+            for (let i = 0; i < arrNumbers.length; i++) {
+                if (isNaN(arrNumbers[i])) {
+                    continue;
+                }
+                if (min > arrNumbers[i] && min != arrNumbers[i]) {
+                    min = arrNumbers[i];
+                }
+            }
+            const minElement = document.getElementById("pMin");
+            minElement.innerHTML = 'Min: ' + min;
+            minElement.style.opacity = '0.75';
+        }
+
+        max(numbers);
+        min(numbers);
+
+    </script>
+</body>
+</html>
