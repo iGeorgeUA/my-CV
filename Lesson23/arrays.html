@@ -8,11 +8,11 @@
 </head>
 <body>
     <script>
-        let arrNumbers = [4, 10, 9, 6, 2, 9, 8, 7, 1, 9];
+        let arrNumbers = [4, 10, 9, 6, 2, 9, 8, 7, 3, 9];
 
         let arrSum = 0;
         for (let i = 0; i < arrNumbers.length; i++) {
-            if (isNaN(arrNumbers[i])) {
+            if (typeof arrNumbers[i] !== 'number') {
                 continue;
             }
             arrSum = arrSum + arrNumbers[i];
@@ -21,7 +21,7 @@
 
         let max = -Infinity;
         for (let i = 0; i < arrNumbers.length; i++) {
-            if (isNaN(arrNumbers[i])) {
+            if (typeof arrNumbers[i] !== 'number') {
                 continue;
             }
             if (max < arrNumbers[i] && max != arrNumbers[i]) {
@@ -32,7 +32,7 @@
 
         let min = Infinity;
         for (let i = 0; i < arrNumbers.length; i++) {
-            if (isNaN(arrNumbers[i])) {
+            if (typeof arrNumbers[i] !== 'number') {
                 continue;
             }
             if (min > arrNumbers[i] && min != arrNumbers[i]) {
