@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <div class="m-container js-container"></div>
+
+    <!-- test engine -->
+    <script src="testengine/jasmine.js"></script>
+    <script src="testengine/jasmine-test-reporter.js"></script>
+    <script src="testengine/TestManager.js"></script>
+
+    <!-- add your code import here -->
+    <script src="./src/index.js"></script>
+
+    <!-- add your test import here -->
+    <script src="./tests/index.test.js"></script>
+
+    <!-- run our code -->
+    <script>
+        window.onload = function () {
+            window.initiateTest();
+        };
+    </script>
+
+</body>
+
+</html>
