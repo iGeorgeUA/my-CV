@@ -25,7 +25,7 @@ const projectList = new ProjectList()
 fetchLoader.addEventListener('onload', fetchLoaderAsync);
 
 async function fetchLoaderAsync() {
-  const loaderRaw = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  const loaderRaw = await fetch('https://api.github.com/users/iGeorgeUA/repos');
   const projects = await loaderRaw.json();
 
   projects.forEach(project => {
