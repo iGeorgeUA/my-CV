@@ -1,28 +1,41 @@
-const fetchLoader = document.querySelector('fetchLoader');
+const fetchLoader = document.querySelector('.fetchLoader');
 
 function ProjectList() {
   this.projects = [];
 }
 
-ProjectList.prototype.addItem = function (item) {
+ProjectList.prototype.addItem = function (name, url, desc) {
   this.projects.push({
-      item,
-      isDone: false
+    name, url, desc
   });
 }
 
 ProjectList.prototype.printItems = function () {
+  fetchLoader.innerHTML = '';
+
   for (let i = 0; i < this.projects.length; i++) {
-      const p = document.createElement('p');
-      p.setAttribute('data-project', i);
-      p.textContent = this.projects[i].item;
-      p.appendChild(p);
+    const pr = document.createElement('p');
+    pr.setAttribute('id', `project-${i}`);
+
+    const a = document.createElement('a');
+    a.setAttribute('data-link', i);
+    a.textContent = this.projects[i].name;
+    a.href = this.projects[i].url;
+
+    const p = document.createElement('p');
+    p.setAttribute('data-project', i);
+    p.textContent = this.projects[i].desc;
+
+    pr.appendChild(a);
+    if (p != null) {
+      pr.appendChild(p);
+    }
+    fetchLoader.appendChild(pr);
   }
 }
 
 const projectList = new ProjectList()
-
-fetchLoader.addEventListener('onload', fetchLoaderAsync);
+window.addEventListener('load', fetchLoaderAsync);
 
 async function fetchLoaderAsync() {
   const loaderRaw = await fetch('https://api.github.com/users/iGeorgeUA/repos');

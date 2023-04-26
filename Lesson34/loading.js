@@ -1,42 +1,43 @@
 const fetchLoader = document.querySelector('fetchLoader');
 
-function ProjectList() {
-  this.projects = [];
-}
+class ProjectList {
+  constructor() {
+    this.projects = [];
+  }
 
-ProjectList.prototype.addItem = function (item) {
-  this.projects.push({
-      item,
-      isDone: false
-  });
-}
+  addItem(name, url, desc) {
+    this.projects.push({
+      name, url, desc
+    });
+  }
 
-ProjectList.prototype.printItems = function () {
-  for (let i = 0; i < this.projects.length; i++) {
+  printItems() {
+    fetchLoader.innerHTML = '';
+
+    for (let i = 0; i < this.projects.length; i++) {
+      const pr = document.createElement('p');
+      pr.setAttribute('id', `project-${i}`);
+
+      const a = document.createElement('a');
+      a.setAttribute('data-link', i);
+      a.textContent = this.projects[i].name;
+      a.href = this.projects[i].url;
+
       const p = document.createElement('p');
       p.setAttribute('data-project', i);
-      p.textContent = this.projects[i].item;
-      p.appendChild(p);
+      p.textContent = this.projects[i].desc;
+
+      pr.appendChild(a);
+      if (p != null) {
+        pr.appendChild(p);
+      }
+      fetchLoader.appendChild(pr);
+    }
   }
 }
 
-const projectList = new ProjectList()
-
-fetchLoader.addEventListener('onload', fetchLoaderAsync);
-
-async function fetchLoaderAsync() {
-  const loaderRaw = await fetch('https://api.github.com/users/iGeorgeUA/repos');
-  const projects = await loaderRaw.json();
-
-  projects.forEach(project => {
-    projectList.addItem(project.full_name, project.html_url, project.description);
-    projectList.printItems();
-  });
-}
-
-const fetchApi = document.querySelector('fetchApi');
-
-fetchApi.addEventListener('onload', fetchApiAsync);
+const projectList = new ProjectList();
+window.addEventListener('load', getRepos)
 
 class Api {
   constructor(token, userName) {
@@ -44,20 +45,20 @@ class Api {
     this.userName = userName;
   }
 
-  async function fetchApiAsync(url = 'https://api.github.com/users/iGeorgeUA/repos', data = {
-    headers: {
-        'Authorization': 'Bearer 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',
+  async function getRepos() {
+    const loaderRaw = await fetch(`https://api.github.com/users/${this.userName}`, {
+      headers: {
+        'Authorization': `Bearer ${this.token}`,
         'X-GitHub-Api-Version': '2022-11-28',
-    },
-  }) {
-    const response = await fetch(url, data);
-    const userName = await response.json();
-  }
+      },
+    });
+    const projects = await loaderRaw.json();
 
-  getRepos() {
-    return this.userName;
+    projects.forEach(project => {
+      projectList.addItem(project.full_name, project.html_url, project.description);
+      projectList.printItems();
+    });
   }
 }
 
-const api = new Api();
-console.log(api instanceof Api);
+const api = new Api('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', 'iGeorgeUA');

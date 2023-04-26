@@ -36,7 +36,5 @@ function checkKey(e) {
         document.getElementById("G").scrollIntoView({ behavior: 'smooth' });
     } else if (e.keyCode == "72") {
         document.getElementById("H").scrollIntoView({ behavior: 'smooth' });
-    } else if (e.keyCode == "73") {
-        document.getElementById("I").scrollIntoView({ behavior: 'smooth' });
     }
 }
