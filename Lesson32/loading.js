@@ -1,20 +1,12 @@
 const fetchLoader = document.querySelector('.fetchLoader');
-/*
-fetch('https://api.github.com/users/iGeorgeUA/repos')
-  .then(res => res.json())
-  .then(data => console.log(data))
 
-fetch('https://jsonplaceholder.typicode.com/todos/')
-  .then(res => res.json())
-  .then(data => console.log(data))
-*/
 function ProjectList() {
   this.projects = [];
 }
 
-ProjectList.prototype.addItem = function (item) {
+ProjectList.prototype.addItem = function (name, url, desc) {
   this.projects.push({
-      item
+    name, url, desc
   });
 }
 
@@ -22,11 +14,23 @@ ProjectList.prototype.printItems = function () {
   fetchLoader.innerHTML = '';
 
   for (let i = 0; i < this.projects.length; i++) {
+    const pr = document.createElement('p');
+    pr.setAttribute('id', `project-${i}`);
+
+    const a = document.createElement('a');
+    a.setAttribute('data-link', i);
+    a.textContent = this.projects[i].name;
+    a.href = this.projects[i].url;
+
     const p = document.createElement('p');
     p.setAttribute('data-project', i);
-    p.textContent = this.projects[i].item;
+    p.textContent = this.projects[i].desc;
 
-    fetchLoader.appendChild(p);
+    pr.appendChild(a);
+    if (p != null) {
+      pr.appendChild(p);
+    }
+    fetchLoader.appendChild(pr);
   }
 }
 
@@ -38,11 +42,7 @@ async function fetchLoaderAsync() {
   const projects = await loaderRaw.json();
 
   projects.forEach(project => {
-    projectList.addItem(project.full_name);
-    projectList.addItem(project.html_url);
-    projectList.addItem(project.description);
-    console.log(projectList)
+    projectList.addItem(project.full_name, project.html_url, project.description);
     projectList.printItems();
-
   });
 }
