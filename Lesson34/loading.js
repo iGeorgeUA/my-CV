@@ -35,7 +35,6 @@ async function fetchLoaderAsync() {
 }
 
 const fetchApi = document.querySelector('fetchApi');
-const API_TOKEN = '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';
 
 fetchApi.addEventListener('onload', fetchApiAsync);
 
@@ -47,7 +46,7 @@ class Api {
 
   async function fetchApiAsync(url = 'https://api.github.com/users/iGeorgeUA/repos', data = {
     headers: {
-        'Authorization': 'Bearer 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',
+        'Authorization': 'Bearer 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',
         'X-GitHub-Api-Version': '2022-11-28',
     },
   }) {
