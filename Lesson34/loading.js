@@ -61,4 +61,4 @@ class Api {
   }
 }
 
-const api = new Api('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', 'iGeorgeUA');
+const api = new Api('', '');
