@@ -1,35 +1,25 @@
-const API_URL = 'https://dummyjson.com/users';
+const API_URL = 'https://gorest.co.in/public/v2/users';
 
 const userContainer = document.getElementById('user-list')
 
-function createList(user) {
+function createUserList(user) {
   const list = document.createElement('ul');
   list.classList.add('list-group');
 
   const listBody = document.createElement('li');
   listBody.classList.add('list-group-item', 'list-group-item-action');
 
-  const listImage = document.createElement('img');
-  listImage.classList.add('list-image');
-  listImage.src = user.image;
-
-  const listText = document.createElement('div');
-  listText.classList.add('list-text');
-
   const listName = document.createElement('a');
   listName.classList.add('h5', 'name-link');
   listName.href = `user-posts.html?id=${user.id}`;
-  listName.innerText = user.firstName + user.lastName;
+  listName.innerText = user.name;
   
-  const listUserName = document.createElement('p');
-  listUserName.classList.add('p');
-  listUserName.innerText = '@' + user.username;
+  const listEmail = document.createElement('p');
+  listEmail.classList.add('p');
+  listEmail.innerText = user.email;
 
-  listText.appendChild(listName);
-  listText.appendChild(listUserName);
-
-  listBody.appendChild(listImage);
-  listBody.appendChild(listText);
+  listBody.appendChild(listName);
+  listBody.appendChild(listEmail);
 
   list.appendChild(listBody);
 
@@ -49,26 +39,22 @@ function handleLoaded() {
   loader.classList.add('hidden');
 }
 
-function getUsers() {
-  return fetch(API_URL)
-    .then(response => {
-      handleLoaded();
-      if (!response.ok) {
-        throw new Error('Users not found');
-      }
-
-      return response.json()
-    })
-    .then(({ users }) => {
-      users.forEach(user => {
-        const list = createList(user);
-        userContainer.appendChild(list);
-      })
-    })
-    .catch (error => {
-      const errorMessageBox = createErrorMessageBox(error.message);
-      userContainer.appendChild(errorMessageBox);
-    })
+async function getUsers() {
+  try {
+    const response = await fetch(API_URL);
+    handleLoaded();
+    if (!response.ok) {
+      throw new Error('Users not found');
+    }
+    const users = await response.json();
+    users.forEach(user => {
+      const list = createUserList(user);
+      userContainer.appendChild(list);
+    });
+  } catch (error) {
+    const errorMessageBox = createErrorMessageBox(error.message);
+    userContainer.appendChild(errorMessageBox);
+  }
 }
 
 getUsers();
