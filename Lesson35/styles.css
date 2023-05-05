@@ -25,3 +25,23 @@
 .hidden {
   display: none;
 }
+
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.list-text {
+  display: inline-block;
+  max-width: fit-content;
+  margin-left: 10px;
+}
+
+.list-image {
+  max-width: 100px;
+}
+
+.name-link {
+  color: black;
+  text-decoration: none;
+}
