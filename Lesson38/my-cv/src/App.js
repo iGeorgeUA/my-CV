@@ -4,11 +4,17 @@ import { ContactInfo } from './components/ContactInfo';
 import { Experience } from './components/Experience';
 import { Counter } from './components/Counter';
 
+const items = {
+  
+}
+
 function App() {
   return (
     <div className="page">
-      <Image src="./myPhoto.jpg" />
-      <Counter />
+      <div>
+        <Image src="./myPhoto.jpg" />
+        <Counter />
+      </div>
       <ContactInfo />
       <Experience />
     </div>
