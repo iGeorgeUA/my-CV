@@ -86,6 +86,7 @@ function App() {
           <button onClick={() => restart()}>Try again</button>
         </div>
       ) : (
+        
         <div className='question-card'>
           <h2>Question {question + 1} out of {questions.length}</h2>
           <h3 className='question-text'>{questions[question].text}</h3>
