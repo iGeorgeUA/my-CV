@@ -3,7 +3,7 @@ import './App.css';
 import QuestionsContext from './QuestionsContext';
 
 function App() {
-  const { questions } = useContext(QuestionsContext); console.log(questions);
+  const questions = useContext(QuestionsContext);
   const [showResult, setResult] = useState(false);
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState(0);
