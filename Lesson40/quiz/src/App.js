@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './App.css';
-import QuestionsContext from './QuestionsContext';
-
+import Questions from './questions';
 function App() {
-  const questions = useContext(QuestionsContext);
   const [showResult, setResult] = useState(false);
   const [score, setScore] = useState(0);
   const [question, setQuestion] = useState(0);
