@@ -14,5 +14,3 @@ let price = products['product50'];
 t1 = performance.now();
 
 console.log(`Time to access 50th element: ${(t1 - t0)} milliseconds.`);
-
-console.log(products);
