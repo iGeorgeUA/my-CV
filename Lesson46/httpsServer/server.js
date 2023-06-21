@@ -3,6 +3,7 @@ const app = express();
 app.use(express.json());
 
 const { createAccountHandler, getAccountsHandler, getAccountByNameHandler, updateAccountHandler, deleteAccountHandler, generateTokenHandler } = require('./accountController');
+const { connectDB } = require('./db');
 
 app.post('/accounts', createAccountHandler);
 
@@ -17,4 +18,7 @@ app.delete('/accounts/:name', deleteAccountHandler);
 app.post('/token', generateTokenHandler);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, async () => {
+  await connectDB();
+  console.log(`Listening on port ${port}...`);
+});
