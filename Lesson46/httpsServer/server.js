@@ -16,5 +16,5 @@ app.delete('/accounts/:name', deleteAccountHandler);
 
 app.post('/token', generateTokenHandler);
 
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
