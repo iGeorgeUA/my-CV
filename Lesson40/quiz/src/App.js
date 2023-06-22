@@ -1,27 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import './App.css';
-import Questions from './questions';
+import { useSelector, useDispatch } from 'react-redux';
+import { nextQuestion, restartQuiz } from './actions';
+
 function App() {
-  const [showResult, setResult] = useState(false);
-  const [score, setScore] = useState(0);
-  const [question, setQuestion] = useState(0);
+  const questions = useSelector(state => state.questions);
+  const showResult = useSelector(state => state.showResult);
+  const score = useSelector(state => state.score);
+  const questionIndex = useSelector(state => state.questionIndex);
+  const dispatch = useDispatch();
 
   const answerClicked = (isCorrect) => {
-    if (isCorrect) {
-      setScore(score + 1);
-    }
-
-    if (question + 1 < questions.length) {
-      setQuestion(question + 1);
-    } else {
-      setResult(true);
-    }
+    dispatch(nextQuestion(isCorrect));
   }
 
   const restart = () => {
-    setScore(0);
-    setQuestion(0);
-    setResult(false);
+    dispatch(restartQuiz());
   }
 
   return (
@@ -38,10 +32,10 @@ function App() {
         </div>
       ) : (
         <div className='question-card'>
-          <h2>Question {question + 1} out of {questions.length}</h2>
-          <h3 className='question-text'>{questions[question].text}</h3>
+          <h2>Question {questionIndex + 1} out of {questions.length}</h2>
+          <h3 className='question-text'>{questions[questionIndex].text}</h3>
           <ul>
-            {questions[question].answers.map((answer) => {
+            {questions[questionIndex].answers.map((answer) => {
               return (
                 <li onClick={() => answerClicked(answer.isCorrect)} key={answer.id}>{answer.text}</li>
               );

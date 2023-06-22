@@ -1,7 +1,8 @@
-import { connect } from 'react-redux'
-import { fetchQuestions } from './actions';
+import React, { createContext } from "react";
 
-const Questions = [
+export const QuestionsContext = createContext();
+
+const questions = [
   {
     text: "Who was the first President of the United States?",
     answers: [
@@ -49,13 +50,12 @@ const Questions = [
   },
 ];
 
-const mapStateToProps = state => ({
-  questions: state.questions
-})
+export function QuestionsProvider({ children }) {
+  return (
+    <QuestionsContext.Provider value={ questions }>
+      {children}
+    </QuestionsContext.Provider>
+  )
+}
 
-
-const mapDispatchToProps = dispatch => ({
-  fetchQuestions: () => dispatch(fetchQuestions())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default QuestionsContext;
