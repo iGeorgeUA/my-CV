@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const secret = 'your-secret-key';
+
 app.use(bodyParser.json());
 
 let accounts = [];
@@ -13,39 +16,29 @@ app.get('/accounts', (req, res) => {
 app.post('/accounts', (req, res) => {
   const account = req.body;
   accounts.push(account);
-  res.status(201).json(account);
+  res.json(account);
 });
 
-app.put('/accounts/:name', (req, res) => {
-  const name = req.params.name;
+app.put('/accounts/:id', (req, res) => {
+  const id = req.params.id;
   const account = req.body;
-  const index = accounts.findIndex(a => a.name === name);
-  if (index === -1) {
-    res.status(404).json({ message: 'Account not found' });
+  accounts[id] = account;
+  res.json(account);
+});
+
+app.delete('/accounts/:id', (req, res) => {
+  if (req.query.role === 'Admin' && req.query.password === 'your-admin-password' && req.query.login === 'your-admin-login') {
+    const id = req.params.id;
+    accounts.splice(id, 1);
+    res.json({ message: 'Account deleted' });
   } else {
-    accounts[index] = account;
-    res.json(account);
+    res.status(401).json({ message: 'Unauthorized' });
   }
 });
 
-app.delete('/accounts/:name', (req, res) => {
-  if (req.query.role !== 'Admin') {
-    res.status(403).json({ message: 'Only an Admin can delete accounts' });
-    return;
-  }
-  const name = req.params.name;
-  const index = accounts.findIndex(a => a.name === name);
-  if (index === -1) {
-    res.status(404).json({ message: 'Account not found' });
-  } else {
-    accounts.splice(index, 1);
-    res.status(204).end();
-  }
-});
-
-app.get('/accounts/:name/tokens', (req, res) => {
-  const name = req.params.name;
-  const accountTokens = tokens.filter(t => t.name === name);
+app.get('/accounts/:id/tokens', (req, res) => {
+  const id = req.params.id;
+  const accountTokens = tokens.filter(token => token.accountId === id);
   res.json(accountTokens);
 });
 
@@ -54,37 +47,30 @@ app.get('/tokens', (req, res) => {
 });
 
 app.post('/tokens', (req, res) => {
-  const token = req.body;
-  tokens.push(token);
-  res.status(201).json(token);
+  const tokenData = req.body;
+  const token = jwt.sign(tokenData, secret);
+  tokens.push({
+    accountId: tokenData.accountId,
+    token
+  });
+  res.json({ token });
 });
 
 app.put('/tokens/:id', (req, res) => {
   const id = req.params.id;
-  const token = req.body;
-  const index = tokens.findIndex(t => t.id === id);
-  if (index === -1) {
-    res.status(404).json({ message: 'Token not found' });
-  } else {
-    tokens[index] = token;
-    res.json(token);
-  }
+  const tokenData = req.body;
+  const token = jwt.sign(tokenData, secret);
+  tokens[id] = {
+    accountId: tokenData.accountId,
+    token
+  };
+  res.json({ token });
 });
 
 app.delete('/tokens/:id', (req, res) => {
-  if (req.query.role !== 'Admin') {
-    res.status(403).json({ message: 'Only an Admin can delete tokens' });
-    return;
-  }
   const id = req.params.id;
-  const index = tokens.findIndex(t => t.id === id);
-  if (index === -1) {
-    res.status(404).json({ message: 'Token not found' });
-  } else {
-    tokens.splice(index, 1);
-    res.status(204).end();
-  }
+  tokens.splice(id, 1);
+  res.json({ message: 'Token deleted' });
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+app.listen(3000, () => console.log('Server listening on port 3000'));
