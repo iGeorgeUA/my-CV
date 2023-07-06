@@ -3,23 +3,21 @@
 }
 
 .search {
-  box-shadow: 10px -2px 20px 2px rgb(0 0 0 / 30%);
   font-size: 18px;
   font-weight: 400;
   padding: 5px;
   width: 100%;
   min-width: 300px;
-  max-width: 500px;
+  max-width: 400px;
   margin: 20px 0 20px 0;
   background-color: #ffffff;
   border-radius: 10px;
 }
 
 .btn {
-  box-shadow: 10px -2px 20px 2px rgb(0 0 0 / 30%);
   font-size: 18px;
   font-weight: 400;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   margin-left: 5px;
   background-color: #e2e2e2;

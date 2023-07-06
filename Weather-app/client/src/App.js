@@ -53,7 +53,7 @@ function App() {
     <div>
       <div className='container'>
         <input type="text" className='search' placeholder='City' onChange={handleCityChange} />
-        <button className='btn' onClick={handleGetWeather}>Get Weather</button>
+        <button className='btn' onClick={handleGetWeather}>Get Forecast Weather</button>
         <button className='btn' onClick={handleGetCurrentWeather}>Get Current Weather</button>
       </div>
       {currentWeatherData && (

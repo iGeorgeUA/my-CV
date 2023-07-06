@@ -74,7 +74,6 @@ const citySchema = {
 //   const { username, password } = req.body;
 //   if (username === 'user' && password === 'password') {
 //     const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
-//     res.cookie('token', token, { httpOnly: true });
 //     res.json({ token });
 //   } else {
 //     res.status(401).send('Invalid username or password');
