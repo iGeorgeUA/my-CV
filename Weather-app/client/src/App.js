@@ -1,68 +1,94 @@
 import './App.css';
 import React, { useState } from 'react';
 
-const weatherCodes = {
-  0: 'Clear sky',
-  1: 'Mainly clear',
-  2: 'Partly cloudy',
-  3: 'Overcast',
-  45: 'Fog',
-  48: 'Depositing rime fog',
-  51: 'Light intensity drizzle',
-  53: 'Moderate intensity drizzle',
-  55: 'Dense intensity drizzle',
-  56: 'Light intensity freezing drizzle',
-  57: 'Dense intensity freezing drizzle',
-  61: 'Slight intensity rain',
-  63: 'Moderate intensity rain',
-  65: 'Heavy intensity rain',
-  66: 'Light intensity freezing rain',
-  67: 'Heavy intensity freezing rain',
-  71: 'Slight intensity snowfall',
-  73: 'Moderate intensity snowfall',
-  75: 'Heavy intensity snowfall',
-  77: 'Snow grains',
-  80: 'Slight rain showers',
-  81: 'Moderate rain showers',
-  82: 'Violent rain showers',
-  85: 'Slight snow showers',
-  86: 'Heavy snow showers',
-  95: 'Thunderstorm slight or moderate',
-  96: 'Thunderstorm with slight hail',
-  99: 'Thunderstorm with heavy hail'
-};
+const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 function App() {
   const [city, setCity] = useState('');
-  const [date_start, setDate_start] = useState('');
-  const [date_end, setDate_end] = useState('');
+  const [currentWeatherData, setCurrentWeatherData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch(`http://127.0.0.1:3001/weather/${city}/${date_start}/${date_end}`);
-    const data = await response.json();
-    setWeatherData(data);
-  }
-  console.log(weatherData);
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
 
+  const handleGetCurrentWeather = async () => {
+    try {
+      // const token = 'SecretKey';
+      const response = await fetch(`http://127.0.0.1:3001/current-weather/${city}`);
+      const data = await response.json();
+      setCurrentWeatherData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleGetWeather = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:3001/weather/${city}`);
+      const data = await response.json();
+      const groupedData = data.list.reduce((acc, curr) => {
+        const date = new Date(curr.dt_txt).getDate();
+        if (!acc[date]) {
+          acc[date] = [];
+        }
+        acc[date].push(curr);
+        return acc;
+      }, {});
+      const averagedData = Object.values(groupedData).map((group) => {
+        const sum = group.reduce((acc, curr) => acc + curr.main.temp, 0);
+        const avg = sum / group.length;
+        return { ...group[0], main: { ...group[0].main, temp: avg } };
+      });
+      setWeatherData({ ...data, list: averagedData });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const dayInAWeek = new Date().getDay();
+  const forecastDays = WEEK_DAYS.slice(dayInAWeek, WEEK_DAYS.length).concat(WEEK_DAYS.slice(0, dayInAWeek));
+  
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="City" onChange={(e) => setCity(e.target.value)} />
-        <input type="date" onChange={(e) => setDate_start(e.target.value)} />
-        <input type="date" onChange={(e) => setDate_end(e.target.value)} />
-        <button type="submit">Get Weather</button>
-      </form>
-      {weatherData && (
-        <div>
-          <h2>Weather for {city} from {date_start} to {date_end}</h2>
-          {weatherData.daily.weathercode.map((code, index) => (
-            <div key={index}>
-              <h3>Date: {weatherData.time[index]}</h3>
-              <p>Max temperature: {weatherData.daily.temperature_2m_max[index]}</p>
-              <p>Min temperature: {weatherData.daily.temperature_2m_min[index]}</p>
-              <p>Weather: {weatherCodes[code]}</p>
+      <div className='container'>
+        <input type="text" className='search' placeholder='City' onChange={handleCityChange} />
+        <button className='btn' onClick={handleGetWeather}>Get Weather</button>
+        <button className='btn' onClick={handleGetCurrentWeather}>Get Current Weather</button>
+      </div>
+      {currentWeatherData && (
+        <div className='weather'>
+          <div className='info'>
+            <div>
+              <div>
+                <p className='city'>{currentWeatherData.name}</p>
+                <p className='weather-description'>{currentWeatherData.weather[0].main}</p>
+              </div>
+              <p className='temperature'>{Math.round(currentWeatherData.main.temp)} °C</p>
+            </div>
+            <div>
+              <img alt='weather icon' className='icon' src={`icons/${currentWeatherData.weather[0].icon}.png`} />
+              <img alt='cloth icon' className='icon' src={`icons/${currentWeatherData.weather[0].icon}_cloth.png`} />
+            </div>  
+          </div>
+        </div>
+      )}
+      {weatherData && weatherData.list && (
+        <div className='weather-forecast'>
+          {weatherData.list.map((day, index) => (
+            <div key={index} className='info'>
+              <p className='day'>{forecastDays[index]}</p>
+              <div>
+                <div>
+                  <p className='city'>{weatherData.city.name}</p>
+                  <p className='weather-description'>{day.weather[0].main}</p>
+                </div>
+                <p className='temperature'>{Math.round(day.main.temp)} °C</p>
+              </div>
+              <div>
+                <img alt='weather icon' className='icon' src={`icons/${day.weather[0].icon}.png`} />
+                <img alt='cloth icon' className='icon' src={`icons/${day.weather[0].icon}_cloth.png`} />
+              </div>  
             </div>
           ))}
         </div>
